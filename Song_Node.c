@@ -41,7 +41,10 @@ int song_cmp(struct song_node * sn1, struct song_node * sn2)
 struct song_node * insert_sorted(struct song_node * sn){}
 struct song_node * find_song(char * artist, char * name){}
 struct song_node * find_first(char * artist){}
-struct song_node * get_rand(){}
+struct song_node * get_rand(struct song_node * sn){
+  srand(time(NULL));
+  int randint = rand();
+}
 struct song_node * remove_node(struct song_node * sn, char * artist, char * name) {
   struct song_node * next = sn; //TODO: rename next
   // should_remove_val checks to see if the names and songs match
