@@ -17,4 +17,4 @@ Song_Node.o: Song_Node.c Song_Node.h
 	$(CC) -c Song_Node.c Song_Node.h
 
 clean:
-	rm *.o program
+	rm *.o exec
