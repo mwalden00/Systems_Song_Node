@@ -1,10 +1,10 @@
-ifeq ($(DEBUG).true)
+ifeq ($(DEBUG),true)
 	CC = gcc -g
 else
 	CC = gcc
 endif
 
-all: Song_Node.h main.c
+all: Song_Node.o main.o
 	$(CC) -o exec main.o Song_Node.o
 
 run:
