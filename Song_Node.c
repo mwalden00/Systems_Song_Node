@@ -21,8 +21,7 @@ void print_library(struct song_node * sn)
 	printf("\n");
 }
 
-struct song_node * insert_front(struct song_node * sn,\
-char * artist, char * name) 
+struct song_node * insert_front(struct song_node * sn, char * artist, char * name)
 {
 	struct song_node * sn2 = malloc(sizeof(struct song_node));
 	strcpy(sn2->name, name);
@@ -39,7 +38,7 @@ int song_cmp(struct song_node * sn1, struct song_node * sn2)
 	char * n2 = &sn2->name[0];
 	int acmp = strcmp(a1,a2);
 	if (acmp != 0) return acmp;
-	return strcmp(n1,n2); 
+	return strcmp(n1,n2);
 }
 
 struct song_node * insert_sorted(struct song_node * lib, char * artist, char * name)
@@ -84,13 +83,22 @@ struct song_node * find_first(struct song_node * lib, char * artist)
 	return lib;
 }
 
-struct song_node * get_rand(struct song_node * sn){
-  srand(time(NULL));
-  int randint = rand();
+struct song_node * get_randn(struct song_node * sn, int len)
+{
+	srand(time(NULL));
+	int randint = rand() * len;
+	int i = 0;
+	struct song_node * val = sn;
+
+	for(; i < randint; i++) {
+		val = sn->next;
+	}
+	return val;
 }
 
-struct song_node * remove_node(struct song_node * sn, char * artist, char * name) {
-  struct song_node * next = sn; //TODO: rename next
+struct song_node * remove_node(struct song_node * sn, char * artist, char * name)
+{
+  struct song_node * next = sn;
   // should_remove_val checks to see if the names and songs match
   int should_remove_val = (strncpy(next->name, name, 100) || name == NULL) &&
 	(strncpy(next->artist, artist, 100) || artist == NULL);
@@ -132,4 +140,15 @@ struct song_node * free_nullify(struct song_node *val) {
 	free(val);
 	val = NULL;
 	return NULL;
+}
+
+int len(struct song_node *sn) {
+	int len = 0;
+	struct song_node *node = sn;
+
+	while(node) {
+		len++;
+		node = node->next;
+	}
+	return len;
 }
