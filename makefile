@@ -2,6 +2,8 @@ ifeq ($(DEBUG).true)
 	CC = gcc -g
 else
 	CC = gcc
+endif
+
 all: Song_Node.h main.c
 	$(CC) -o exec main.o Song_Node.o
 
