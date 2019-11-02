@@ -4,7 +4,7 @@ else
 	CC = gcc
 endif
 
-all: Song_Node.h main.c
+all: Song_Node.o main.o
 	$(CC) -o exec main.o Song_Node.o
 
 run:
@@ -17,4 +17,4 @@ Song_Node.o: Song_Node.c Song_Node.h
 	$(CC) -c Song_Node.c Song_Node.h
 
 clean:
-	rm *.o program
+	rm *.o exec
