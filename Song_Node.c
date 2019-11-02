@@ -96,27 +96,32 @@ struct song_node * get_randn(struct song_node * sn, int len)
 	return val;
 }
 
+struct get_rand(struct song_node * sn)
+{
+	get_randn(sn, len(sn));
+}
+
 struct song_node * remove_node(struct song_node * sn, char * artist, char * name)
 {
-  struct song_node * next = sn;
-  // should_remove_val checks to see if the names and songs match
-  int should_remove_val = (strncpy(next->name, name, 100) || name == NULL) &&
-	(strncpy(next->artist, artist, 100) || artist == NULL);
-  if(should_remove_val) {
-	struct song_node *tmp = (next->next) ? next->next : NULL;
-	free_nullify(sn);
-	return tmp;
+	struct song_node * next = sn;
+	// should_remove_val checks to see if the names and songs match
+	int should_remove_val = (strncpy(next->name, name, 100) || name == NULL) &&
+		(strncpy(next->artist, artist, 100) || artist == NULL);
+	if(should_remove_val) {
+		struct song_node *tmp = (next->next) ? next->next : NULL;
+		free_nullify(sn);
+		return tmp;
   }
   next = sn->next;
-  while(next) {
-	if(should_remove_val) {
-	  free_nullify(next);
-	  return sn;
+	while(next) {
+		if(should_remove_val) {
+			free_nullify(next);
+			return sn;
+		}
+		if(!next->next) return sn;
+		next = next->next;
 	}
-	if(!next->next) return sn;
-	next = next->next;
-  }
-  return sn;
+	return sn;
 }
 
 struct song_node * free_list(struct song_node *sn) {
