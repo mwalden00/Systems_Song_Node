@@ -68,7 +68,7 @@ struct song_node * find_song(struct song_node * lib, char * artist, char * name)
 		if(strcmp(lib->name, name) == 0 && strcmp(lib->name, name) == 0) return lib;
 		lib = lib->next;
 	}
-  return NULL;
+	return NULL;
 }
 
 struct song_node * find_first(struct song_node * lib, char * artist)
@@ -82,17 +82,17 @@ struct song_node * find_first(struct song_node * lib, char * artist)
 
 struct song_node * find_artist(struct song_node * lib, char * artist)
 {
-  if(find_first(lib, artist) == NULL) return NULL;
-  struct song_node *val = malloc(sizeof(struct song_node));
-  val = find_first(lib, artist);
-  val->next = NULL;
-  lib = find_first(lib, artist);
+	if(find_first(lib, artist) == NULL) return NULL;
+	struct song_node *val = malloc(sizeof(struct song_node));
+	val = find_first(lib, artist);
+	val->next = NULL;
+	lib = find_first(lib, artist);
 
-  while(find_first(lib, artist) != NULL) {
-    lib = find_first(lib, artist);
-    val = insert_front(val, lib->name, lib->artist);
-  }
-  return val;
+	while(find_first(lib, artist) != NULL) {
+		lib = find_first(lib, artist);
+		val = insert_front(val, lib->name, lib->artist);
+	}
+	return val;
 }
 
 struct song_node * get_randn(struct song_node * sn, int len)
@@ -114,9 +114,9 @@ struct song_node * get_rand(struct song_node * sn)
 }
 
 struct song_node * remove_node(struct song_node * sn, char *artist, char * name) {
-  struct song_node *val = (song_cmp(find_song(sn, artist, name), sn)) ? sn->next : sn;
-  free_nullify(find_song(sn, artist, name));
-  return val;
+	struct song_node *val = (song_cmp(find_song(sn, artist, name), sn)) ? sn->next : sn;
+	free_nullify(find_song(sn, artist, name));
+	return val;
 }
 
 /*
@@ -130,8 +130,8 @@ struct song_node * remove_node(struct song_node * sn, char * artist, char * name
 		struct song_node *tmp = (next->next) ? next->next : NULL;
 		free_nullify(sn);
 		return tmp;
-  }
-  next = sn->next;
+	}
+	next = sn->next;
 	while(next) {
 		if(should_remove_val) {
 			free_nullify(next);

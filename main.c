@@ -10,17 +10,17 @@ void print_line()
 
 void print_song(struct song_node *sn, char *artist, char *song) {
 	printf("looking for [%s: %s]\n", artist, song);
-  if(find_song(sn, artist, song) != NULL)
-    printf("\tnode found! %s: %s\n", artist, song);
-  else printf("\tnode not found\n");
+	if(find_song(sn, artist, song) != NULL)
+		printf("\tnode found! %s: %s\n", artist, song);
+	else printf("\tnode not found\n");
 }
 
 void print_artist(struct song_node *sn, char *artist) {
-  printf("looking for [%s]\n", artist);
-  if(find_artist(sn, artist) != NULL) {
-    printf("artist found! ");
-    print_library(find_artist(sn, artist));
-  } else printf("\tartist not found\n");
+	printf("looking for [%s]\n", artist);
+	if(find_artist(sn, artist) != NULL) {
+		printf("artist found! ");
+		print_library(find_artist(sn, artist));
+	} else printf("\tartist not found\n");
 }
 
 int main()
@@ -65,20 +65,20 @@ int main()
 	print_line();
 
 	printf("Testing find_node:\n");
-  print_song(lib_node, "pearl jam", "even flow");
-  print_song(lib_node, "pearl jam", "daughter");
-  print_line();
+	print_song(lib_node, "pearl jam", "even flow");
+	print_song(lib_node, "pearl jam", "daughter");
+	print_line();
 
-  printf("Testing find_artist:\n");
-  print_artist(lib_node, "pink floyd");
-  print_artist(lib_node, "pearl jam");
-  print_artist(lib_node, "presidents of the united states of america");
+	printf("Testing find_artist:\n");
+	print_artist(lib_node, "pink floyd");
+	print_artist(lib_node, "pearl jam");
+	print_artist(lib_node, "presidents of the united states of america");
 
 
-  printf("MISC TESTS\n");
-  print_line();
-  printf("Length of list %d\n", len(lib_node));
-  print_line();
-  print_node(find_song(lib_node, "pearl jam", "daughter")); printf("\n");
+	printf("MISC TESTS\n");
+	print_line();
+	printf("Length of list %d\n", len(lib_node));
+	print_line();
+	print_node(find_song(lib_node, "pearl jam", "daughter")); printf("\n");
 	return 0;
 }
