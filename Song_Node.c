@@ -96,7 +96,7 @@ struct song_node * get_randn(struct song_node * sn, int len)
 	return val;
 }
 
-struct get_rand(struct song_node * sn)
+struct song_node * get_rand(struct song_node * sn)
 {
 	get_randn(sn, len(sn));
 }
