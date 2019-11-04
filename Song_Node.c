@@ -102,12 +102,9 @@ struct song_node * get_randn(struct song_node * sn, int len)
 	srand(time(NULL));
 	int randint = rand() * len;
 	int i = 0;
-	struct song_node * val = sn;
 
-	for(; i < randint; i++) {
-		val = sn->next;
-	}
-	return val;
+	for(; i < randint; i++) sn = sn->next;
+	return sn;
 }
 
 struct song_node * get_rand(struct song_node * sn)
@@ -115,10 +112,22 @@ struct song_node * get_rand(struct song_node * sn)
 	get_randn(sn, len(sn));
 }
 
+struct song_node * get_previous(struct song_node *sn, struct song_node *val) {
+  while(sn) {
+    if(song_cmp(sn->next, val) == 0) return sn;
+    sn = sn->next;
+  }
+  return NULL;
+}
+
 struct song_node * remove_node(struct song_node * sn, char *artist, char * name) {
-	struct song_node *val = (song_cmp(find_song(sn, artist, name), sn)) ? sn->next : sn;
-	free_nullify(find_song(sn, artist, name));
-	return val;
+	struct song_node *val = find_song(sn, artist, name);
+  if(!val) return sn;
+	struct song_node *return_val = (song_cmp(val, sn) == 0) ? sn->next : sn;
+
+	if(get_previous(sn, val)) get_previous(sn, val)->next = val->next;
+	free_nullify(val);
+	return return_val;
 }
 
 /*
@@ -151,19 +160,25 @@ struct song_node * free_list(struct song_node *sn) {
 	struct song_node * prev = sn;
 	struct song_node * node = sn->next;
 
-	free_nullify(prev);
+  printf("freeing node: %s - %s", sn->artist, sn->name);
+	free_nullify(sn);
 	while(node && node->next) {
 		prev = node;
 		node = node->next;
+    printf("freeing node: %s - %s\n", prev->artist, prev->name);
 		free_nullify(prev);
 	}
-	return (node) ? free_nullify(node) : free_nullify(node->next);
+  printf("freeing node: %s - %s\n",
+	       (node != 0x0) ? node->artist : node->next->artist,
+	       (node != 0x0) ? node->name : node->next->name);
+	return (node != 0x0) ? free_nullify(node) : free_nullify(node->next);
 }
 
 struct song_node * free_nullify(struct song_node *val) {
-	printf("freeing node: %s - %s\n", val->name, val->artist);
+  //strcpy(val->artist, NULL);
+  //strcpy(val->name, NULL);
 	free(val);
-	val = NULL;
+	val = 0x0;
 	return NULL;
 }
 
