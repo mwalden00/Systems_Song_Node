@@ -9,3 +9,5 @@ void print_lib(struct song_node **);
 void shuffle(struct song_node **);
 void delete_song(struct song_node **, char *, char *);
 void clear(struct song_node **);
+
+int len_lib(struct song_node **);

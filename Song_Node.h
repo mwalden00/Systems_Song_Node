@@ -18,4 +18,4 @@ struct song_node * free_list(struct song_node *);
 
 int song_cmp(struct song_node *, struct song_node *);
 struct song_node * free_nullify(struct song_node *);
-int len(struct song_node *);
+int len_node(struct song_node *);

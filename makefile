@@ -20,4 +20,4 @@ Song_Lib.o: Song_Lib.c Song_Lib.h
 	$(CC) -c Song_Lib.c Song_Lib.h
 
 clean:
-	rm *.o exec
+	rm *.o exec *.gch

@@ -1,4 +1,5 @@
 #include "Song_Node.h"
+#include "Song_Lib.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -90,38 +91,38 @@ int main()
 	printf("\n");
 	print_node(find_first(lib_node, "presidents of the united states of america"));
 	printf("\n");
-  print_line();
+	print_line();
 
-  printf("Testing songcmp (healper function):\n");
-  print_songcmp(lib_node, "pearl jam", "even flow", "pearl jam", "even flow");
-  print_songcmp(lib_node, "pearl jam", "even flow", "pearl jam", "alive");
-  print_songcmp(lib_node, "pearl jam", "alive", "pearl jam", "even flow");
-  print_songcmp(lib_node, "pearl jam", "even flow", "pink floyd", "time");
-  print_line();
+	printf("Testing songcmp (healper function):\n");
+	print_songcmp(lib_node, "pearl jam", "even flow", "pearl jam", "even flow");
+	print_songcmp(lib_node, "pearl jam", "even flow", "pearl jam", "alive");
+	print_songcmp(lib_node, "pearl jam", "alive", "pearl jam", "even flow");
+	print_songcmp(lib_node, "pearl jam", "even flow", "pink floyd", "time");
+	print_line();
 
-  printf("Testing remove:\n");
-  print_remove(lib_node, "pearl jam", "alive");
-  print_remove(lib_node, "pearl jam", "yellow ledbetter");
-  print_remove(lib_node, "pink floyd", "alive");
-  print_line();
+	printf("Testing remove:\n");
+	print_remove(lib_node, "pearl jam", "alive");
+	print_remove(lib_node, "pearl jam", "yellow ledbetter");
+	print_remove(lib_node, "pink floyd", "alive");
+	print_line();
 
-  printf("Testing free_list:\n");
-  free_list(lib_node);
-  printf("list after free_list:\n\n");
-  print_line();
+	printf("Testing free_list:\n");
+	free_list(lib_node);
+	printf("list after free_list:\n\n");
+	print_line();
 
 
-  printf("MUSIC LIBRARY TESTS\n\n");
-  struct song_node **lib = malloc(3 * sizeof(struct song_node));
-  struct song_node *a = malloc(sizeof(struct song_node));
-  struct song_node *p = malloc(sizeof(struct song_node));
-  struct song_node *r = malloc(sizeof(struct song_node));
-  lib = a;
-  lib++ = p;
-  lib++ = r;
-  print_line();
+	printf("MUSIC LIBRARY TESTS\n\n");
+	struct song_node **lib = malloc(3 * sizeof(struct song_node));
+	struct song_node *a = malloc(sizeof(struct song_node));
+	struct song_node *p = malloc(sizeof(struct song_node));
+	struct song_node *r = malloc(sizeof(struct song_node));
+	*lib = a;
+	*(lib + 1) = p;
+	*(lib + 2) = r;
+	print_line();
 
-  printf("Testing print_library\n");
+	printf("Testing print_library\n");
 
 
 	printf("MISC TESTS\n");

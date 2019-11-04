@@ -109,7 +109,7 @@ struct song_node * get_randn(struct song_node * sn, int len)
 
 struct song_node * get_rand(struct song_node * sn)
 {
-	get_randn(sn, len(sn));
+	get_randn(sn, len_node(sn));
 }
 
 struct song_node * get_previous(struct song_node *sn, struct song_node *val) {
@@ -182,7 +182,7 @@ struct song_node * free_nullify(struct song_node *val) {
 	return NULL;
 }
 
-int len(struct song_node *sn) {
+int len_node(struct song_node *sn) {
 	int len = 0;
 	struct song_node *node = sn;
 

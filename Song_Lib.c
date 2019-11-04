@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "Song_Lib.h"
+//#include "Song_Node.h"
 
 void add_song(struct song_node ** lib, char * artist, char * name)
 {
@@ -61,7 +62,7 @@ void print_artist(struct song_node ** lib, char * artist)
 
 void print_lib(struct song_node ** lib) {
 	while(lib) {
-		print_list(*lib);
+		print_library(*lib);
 		lib++;
 	}
 }
@@ -78,6 +79,12 @@ void shuffle(struct song_node ** lib) {
 		get_rand(libcpy);
 		libcpy = *lib;
 	}
+}
+
+int len_lib(struct song_node **lib) {
+	int i = 0;
+	while(lib++) i++;
+	return i;
 }
 
 void delete_song(struct song_node ** lib, char * artist, char * name) {
