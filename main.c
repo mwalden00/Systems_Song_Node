@@ -15,13 +15,13 @@ void print_song(struct song_node *sn, char *artist, char *song) {
 	else printf("\tnode not found\n");
 }
 
-void print_artist(struct song_node *sn, char *artist) {
+/*void print_artist(struct song_node *sn, char *artist) {
 	printf("looking for [%s]\n", artist);
 	if(find_artist(sn, artist) != NULL) {
 		printf("artist found! ");
 		print_library(find_artist(sn, artist));
 	} else printf("\tartist not found\n");
-}
+}*/
 
 int main()
 {
@@ -69,10 +69,13 @@ int main()
 	print_song(lib_node, "pearl jam", "daughter");
 	print_line();
 
-	printf("Testing find_artist:\n");
-	print_artist(lib_node, "pink floyd");
-	print_artist(lib_node, "pearl jam");
-	print_artist(lib_node, "presidents of the united states of america");
+	printf("Testing find_first:\n");
+	print_node(find_first(lib_node, "pink floyd"));
+	printf("\n");
+	print_node(find_first(lib_node, "pearl jam"));
+	printf("\n");
+	print_node(find_first(lib_node, "presidents of the united states of america"));
+	printf("\n");
 
 
 	printf("MISC TESTS\n");

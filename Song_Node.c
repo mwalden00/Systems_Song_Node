@@ -32,10 +32,10 @@ struct song_node * insert_front(struct song_node * sn, char * artist, char * nam
 
 int song_cmp(struct song_node * sn1, struct song_node * sn2)
 {
-	char * a1 = &sn1->artist[0];
-	char * n1 = &sn1->name[0];
-	char * a2 = &sn2->artist[0];
-	char * n2 = &sn2->name[0];
+	char * a1 = sn1->artist;
+	char * n1 = sn1->name;
+	char * a2 = sn2->artist;
+	char * n2 = sn2->name;
 	int acmp = strcmp(a1,a2);
 	if (acmp != 0) return acmp;
 	return strcmp(n1,n2);
@@ -80,6 +80,7 @@ struct song_node * find_first(struct song_node * lib, char * artist)
 	return NULL;
 }
 
+/*
 struct song_node * find_artist(struct song_node * lib, char * artist)
 {
 	if(find_first(lib, artist) == NULL) return NULL;
@@ -94,6 +95,7 @@ struct song_node * find_artist(struct song_node * lib, char * artist)
 	}
 	return val;
 }
+*/
 
 struct song_node * get_randn(struct song_node * sn, int len)
 {
