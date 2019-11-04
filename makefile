@@ -10,11 +10,14 @@ all: Song_Node.o main.o
 run:
 	./exec
 
-main.o: main.c Song_Node.h
+main.o: main.c Song_Node.h Song_Lib.h
 	$(CC) -c main.c
 
 Song_Node.o: Song_Node.c Song_Node.h
 	$(CC) -c Song_Node.c Song_Node.h
+	
+Song_Lib.o: Song_Lib.c Song_lib.h
+	$(CC) -c Song_Lib.c Song_Lib.h
 
 clean:
 	rm *.o exec
