@@ -4,6 +4,27 @@
 #include <time.h>
 #include "Song_Node.h"
 
+void print_song(struct song_node *sn, char *artist, char *song) {
+	printf("looking for [%s: %s]\n", artist, song);
+	if(find_song(sn, artist, song) != NULL)
+		printf("\tnode found! %s: %s\n", artist, song);
+	else printf("\tnode not found\n");
+}
+
+void print_songcmp(struct song_node *sn, char *artist1, char *song1,
+                   char *artist2, char *song2) {
+	printf("Comparing [%s: %s] to [%s: %s]\n", artist1, song1, artist2, song2);
+	printf("\t%d\n",
+	       song_cmp(find_song(sn, artist1, song1),
+	                find_song(sn, artist2, song2)));
+}
+
+void print_remove(struct song_node *sn, char *artist, char *song) {
+	printf("Removing [%s: %s]\n\t", artist, song);
+	if(!find_song(sn, artist, song)) printf("%s - %s not found\n", artist, song);
+	print_library(remove_node(sn, artist, song));
+}
+
 void print_node(struct song_node * sn)
 {
 	if (sn != NULL) {
@@ -102,14 +123,17 @@ struct song_node * get_randn(struct song_node * sn, int len)
 	srand(time(NULL));
 	int randint = rand() * len;
 	int i = 0;
-
 	for(; i < randint; i++) sn = sn->next;
 	return sn;
 }
 
 struct song_node * get_rand(struct song_node * sn)
 {
-	get_randn(sn, len_node(sn));
+	srand(time(NULL));
+	int randint = rand() * len_node(sn);
+	int i = 0;
+	for(; i < randint; i++) sn = sn->next;
+	return sn;
 }
 
 struct song_node * get_previous(struct song_node *sn, struct song_node *val) {

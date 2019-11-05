@@ -1,4 +1,3 @@
-#include "Song_Node.h"
 #include "Song_Lib.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,27 +6,6 @@
 void print_line()
 {
 	printf("====================================\n\n");
-}
-
-void print_song(struct song_node *sn, char *artist, char *song) {
-	printf("looking for [%s: %s]\n", artist, song);
-	if(find_song(sn, artist, song) != NULL)
-		printf("\tnode found! %s: %s\n", artist, song);
-	else printf("\tnode not found\n");
-}
-
-void print_songcmp(struct song_node *sn, char *artist1, char *song1,
-                   char *artist2, char *song2) {
-	printf("Comparing [%s: %s] to [%s: %s]\n", artist1, song1, artist2, song2);
-	printf("\t%d\n",
-	       song_cmp(find_song(sn, artist1, song1),
-	                find_song(sn, artist2, song2)));
-}
-
-void print_remove(struct song_node *sn, char *artist, char *song) {
-	printf("Removing [%s: %s]\n\t", artist, song);
-	if(!find_song(sn, artist, song)) printf("%s - %s not found\n", artist, song);
-	print_library(remove_node(sn, artist, song));
 }
 
 /*void print_artist(struct song_node *sn, char *artist) {
@@ -100,6 +78,15 @@ int main()
 	print_songcmp(lib_node, "pearl jam", "even flow", "pink floyd", "time");
 	print_line();
 
+	printf("Testing random\n");
+	print_node(get_rand(lib_node));
+	printf("\n");
+	print_node(get_rand(lib_node));
+	printf("\n");
+	print_node(get_rand(lib_node));
+	printf("\n");
+	print_line();
+
 	printf("Testing remove:\n");
 	print_remove(lib_node, "pearl jam", "alive");
 	print_remove(lib_node, "pearl jam", "yellow ledbetter");
@@ -113,22 +100,104 @@ int main()
 
 
 	printf("MUSIC LIBRARY TESTS\n\n");
-	struct song_node **lib = malloc(3 * sizeof(struct song_node));
-	struct song_node *a = malloc(sizeof(struct song_node));
-	struct song_node *p = malloc(sizeof(struct song_node));
-	struct song_node *r = malloc(sizeof(struct song_node));
-	*lib = a;
-	*(lib + 1) = p;
-	*(lib + 2) = r;
+	struct song_node *a[27];
+	struct song_node *p[27];
+	struct song_node *r[27];
+	struct song_node *lib[27];
+	add_song(a, "ac /dc", "thunderstruck");
+	add_song(p, "pearl jam", "alive");
+	add_song(p, "pearl jam", "even flow");
+	add_song(p, "pearl jam", "yellow ledbetter");
+	add_song(p, "pink floyd", "time");
+	add_song(p, "presidents of the united states of america", "peaches");
+	add_song(r, "radiohead", "paranoid android");
+	add_song(r, "radiohead", "street spirit (fade out)");
+	add_song(lib, "ac /dc", "thunderstruck");
+	add_song(lib, "pearl jam", "alive");
+	add_song(lib, "pearl jam", "even flow");
+	add_song(lib, "pearl jam", "yellow ledbetter");
+	add_song(lib, "pink floyd", "time");
+	add_song(lib, "presidents of the united states of america", "peaches");
+	add_song(lib, "radiohead", "paranoid android");
+	add_song(lib, "radiohead", "street spirit (fade out)");
+	
 	print_line();
 
 	printf("Testing print_library\n");
+	printf("a list\n");
+	print_lib(a);
+	printf("p list\n");
+	print_lib(p);
+	printf("r list\n");
+	print_lib(r);
+	print_line();
+
+	printf("Testing print_letter\n");
+	printf("p list\n");
+	print_letter(lib, 'p');
+	print_line();
+
+	printf("Testing find\n");
+	printf("looking for [pearl jam: alive]\n");
+	lib_find_song(lib,"pearl jam", "alive");
+	printf("\nlooking for [pearl jam: time]\n");
+	lib_find_song(lib,"pearl jam", "time");
+	printf("\n");
+	print_line();
+
+	printf("Testing find artist");
+	printf("looking for [pearl jam]\n");
+	find_artist(lib, "pearl jam");
+	printf("looking for [pink floyd]\n");
+	find_artist(lib, "pink floyd");
+	printf("looking for [bob dylan]\n");
+	find_artist(lib, "bob dylan");
+	print_line();
+
+	printf("Testing remove song\n");
+	printf("removing: [pearl jam: alive]\n");
+	delete_song(lib, "pearl jam", "alive");
+	printf("a list\n");
+	print_letter(lib,'a');
+	printf("p list\n");
+	print_letter(lib,'p');
+	printf("r list\n");
+	print_letter(lib,'r');
+	print_line();
+
+	printf("Testing clear library\n");
+	clear(lib);
+	print_line();
+
+	printf("Adding songs to empty library\n");
+	struct song_node * new[27];
+	add_song(new, "ac /dc", "thunderstruck");
+	add_song(new, "pearl jam", "alive");
+	add_song(new, "pearl jam", "even flow");
+	add_song(new, "pearl jam", "yellow ledbetter");
+	add_song(new, "pink floyd", "time");
+	add_song(new, "presidents of the united states of america", "peaches");
+	printf("a list\n");
+	print_lib(a);
+	printf("p list\n");
+	print_lib(p);
+	print_line();
+
+	printf("Testing print_artist\n");
+	print_artist(new, "pearl jam");
+	printf("\n");
+	print_artist(new, "ac /dc");
+	print_line();
+
+	printf("Testing shuffle\n");
+	shuffle(new);
+	print_line();
 
 
-	printf("MISC TESTS\n");
+	/*printf("MISC TESTS\n");
 	print_line();
-	printf("Length of list %d\n", len(lib_node));
+	printf("Length of list %d\n", len_node(lib_node));
 	print_line();
-	print_node(find_song(lib_node, "pearl jam", "daughter")); printf("\n");
+	print_node(find_song(lib_node, "pearl jam", "daughter")); printf("\n");*/
 	return 0;
 }
